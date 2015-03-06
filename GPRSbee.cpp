@@ -1513,7 +1513,12 @@ bool GPRSbeeClass::doHTTPGETmiddle(const char *url, char *buffer, size_t len)
   if (!waitForOK()) {
     goto ending;
   }
-
+  
+  sendCommandAdd_P(PSTR("AT+HTTPPARA=\"REDIR\",1"));
+    if (!waitForOK()) {
+    goto ending;
+  }
+  
   if (!doHTTPACTION(0)) {
     goto ending;
   }
